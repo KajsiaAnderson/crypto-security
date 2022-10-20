@@ -22,7 +22,7 @@ module.exports = {
       // }
       // res.status(400).send("User not found.")
       if (userData === undefined) {
-        res.status(200).send({success: false, message: 'bad username or password'})
+        res.status(400).send({success: false, message: 'bad username or password'})
       }else {
         bcrypt.compare(password, userData.password, (error, success) => {
           if (!error) {
@@ -34,7 +34,7 @@ module.exports = {
                 lastName: userData.lastName
               })
             } else {
-              res.status(200).send({success: false, message: 'bad password'})
+              res.status(400).send({success: false, message: 'bad password'})
             }
           } else {
             console.log('bcyrpt had an error comparing passwords: ')
